@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project 4</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background:#f3f4f6;
+      color:#111;
+      padding:20px;
+    }
+
+    .container{
+      max-width:700px;
+      margin:0 auto;
+      background:#fff;
+      border:1px solid #ddd;
+      border-radius:12px;
+      padding:24px;
+    }
+
+    h1{
+      margin:0 0 6px;
+      font-size:26px;
+    }
+
+    .subtitle{
+      margin:0 0 18px;
+      color:#555;
+      font-size:14px;
+    }
+
+    .block{
+      border:1px solid #ddd;
+      border-radius:10px;
+      padding:16px;
+      background:#fafafa;
+      margin-bottom:16px;
+    }
+
+    .form-row{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    input{
+      width:140px;
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid #ccc;
+      font-size:14px;
+      font-family: inherit;
+      background:#fff;
+    }
+
+    .result{
+      margin-top:14px;
+      font-size:14px;
+      color:#333;
+    }
+
+    .buttons{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    button.btn, a.btn{
+      padding:10px 14px;
+      border-radius:10px;
+      border:1px solid #ccc;
+      background:#f9fafb;
+      cursor:pointer;
+      font-family: inherit;
+      font-size:14px;
+      color:#111;
+      text-decoration:none;
+    }
+
+    button.btn:hover,
+    a.btn:hover{
+      background:#e5e7eb;
+    }
+
+    footer{
+      margin-top:16px;
+      font-size:12px;
+      color:#666;
+      text-align:center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Project 4</h1>
+    <div class="subtitle">Сложение двух чисел A + B</div>
+
+    <div class="block">
+      <form class="form-row" onsubmit="event.preventDefault(); calcSum();">
+        <input type="text" id="tbxA" placeholder="A">
+        <span>+</span>
+        <input type="text" id="tbxB" placeholder="B">
+        <button class="btn" type="submit">=</button>
+      </form>
+
+      <div id="lblLabel1" class="result">Result: —</div>
+    </div>
+
+    <div class="buttons">
+      <a class="btn" href="../index.html">Домой</a>
+    </div>
+
+    <footer>© WEB-технологии</footer>
+  </div>
+
+  <script>
+    function calcSum(){
+      const a = parseFloat(tbxA.value.replace(',', '.'));
+      const b = parseFloat(tbxB.value.replace(',', '.'));
+      lblLabel1.textContent =
+        (isNaN(a) || isNaN(b)) ? "Result: ошибка ввода" : "Result: " + (a + b);
+    }
+  </script>
+</body>
+</html>
