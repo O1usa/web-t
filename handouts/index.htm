@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handouts</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background:#f3f4f6;
+      color:#111;
+      padding:20px;
+    }
+
+    .container{
+      max-width:900px;
+      margin:0 auto;
+      background:#fff;
+      border:1px solid #ddd;
+      border-radius:12px;
+      padding:24px;
+    }
+
+    h1{
+      margin:0 0 6px;
+      font-size:26px;
+    }
+
+    .subtitle{
+      margin:0 0 18px;
+      color:#555;
+      font-size:14px;
+    }
+
+    .buttons{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+      margin-bottom:14px;
+    }
+
+    button.btn, a.btn{
+      padding:10px 14px;
+      border-radius:10px;
+      border:1px solid #ccc;
+      background:#f9fafb;
+      cursor:pointer;
+      font-family: inherit;
+      font-size:14px;
+      color:#111;
+      text-decoration:none;
+    }
+
+    button.btn:hover,
+    a.btn:hover{
+      background:#e5e7eb;
+    }
+
+    .block{
+      border:1px solid #ddd;
+      border-radius:10px;
+      padding:12px;
+      background:#fafafa;
+    }
+
+    .pdf-title{
+      font-size:14px;
+      color:#555;
+      margin:0 0 10px;
+      word-break: break-word;
+    }
+
+    iframe{
+      width:100%;
+      height:70vh;
+      border:1px solid #ccc;
+      border-radius:10px;
+      background:#fff;
+    }
+
+    footer{
+      margin-top:16px;
+      font-size:12px;
+      color:#666;
+      text-align:center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Handouts</h1>
+    <div class="subtitle">Выбери номер — откроется PDF</div>
+
+    <div class="buttons" id="handoutButtons">
+      <button class="btn" data-key="1">1</button>
+      <button class="btn" data-key="2">2</button>
+      <button class="btn" data-key="3">3</button>
+      <button class="btn" data-key="4">4</button>
+      <button class="btn" data-key="5">5</button>
+      <button class="btn" data-key="6">6</button>
+      <button class="btn" data-key="7">7</button>
+      <button class="btn" data-key="8">8</button>
+      <button class="btn" data-key="9">9</button>
+    </div>
+
+    <div class="block">
+      <p class="pdf-title" id="pdfName">Нажми кнопку 1–9</p>
+      <iframe id="pdfFrame" src="" title="PDF viewer"></iframe>
+    </div>
+
+    <div class="buttons" style="margin-top:12px;">
+      <a class="btn" href="../index.html">Домой</a>
+    </div>
+
+    <footer>© WEB-технологии</footer>
+  </div>
+
+<script>
+  // Файлы лежат в этой же папке: handouts/
+  const pdfMap = {
+    "1": "1_HTML.pdf",
+    "2": "1_Properties_Color.pdf",
+    "3": "A_forEach_EN.pdf",
+    "4": "4_Handout_ES6.pdf",
+    "5": "5_JS_OOP.pdf",
+    "6": "6_CS_OOP.pdf",
+    "7": "7_ASP_NET_Form.pdf",
+    "8": "8_ES6_Events.pdf",
+    "9": "9_JSON_Resume_EN.pdf"
+  };
+
+  const pdfFrame = document.getElementById("pdfFrame");
+  const pdfName = document.getElementById("pdfName");
+
+  function openPdf(key){
+    const file = pdfMap[key];
+    if(!file){
+      pdfName.textContent = "Файл не найден для кнопки " + key;
+      pdfFrame.src = "";
+      return;
+    }
+    pdfName.textContent = "Открыт файл: " + file;
+    pdfFrame.src = file;
+  }
+
+  document.getElementById("handoutButtons").addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-key]");
+    if(!btn) return;
+    openPdf(btn.dataset.key);
+  });
+
+  // можно сразу открыть 1-й
+  openPdf("1");
+</script>
+
+</body>
+</html>
