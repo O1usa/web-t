@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project 2</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background:#f3f4f6;
+      color:#111;
+      padding:20px;
+    }
+
+    .container{
+      max-width:700px;
+      margin:0 auto;
+      background:#fff;
+      border:1px solid #ddd;
+      border-radius:12px;
+      padding:24px;
+    }
+
+    h1{
+      margin:0 0 10px;
+      font-size:26px;
+    }
+
+    .subtitle{
+      margin-bottom:20px;
+      font-size:14px;
+      color:#555;
+    }
+
+    .block{
+      border:1px solid #ddd;
+      border-radius:10px;
+      padding:16px;
+      background:#fafafa;
+      margin-bottom:16px;
+      min-height:80px;
+    }
+
+    #demo{
+      font-size:16px;
+      color:#333;
+    }
+
+    .buttons{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+
+    button.btn, a.btn{
+      padding:10px 14px;
+      border-radius:10px;
+      border:1px solid #ccc;
+      background:#f9fafb;
+      cursor:pointer;
+      font-family: inherit;
+      font-size:14px;
+      color:#111;
+      text-decoration:none;
+    }
+
+    button.btn:hover,
+    a.btn:hover{
+      background:#e5e7eb;
+    }
+
+    footer{
+      text-align:center;
+      font-size:12px;
+      color:#666;
+      margin-top:16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Project 2</h1>
+    <div class="subtitle">forEach</div>
+
+    <div class="block">
+      <div id="demo">Нажмите кнопку, чтобы увидеть результат</div>
+    </div>
+
+    <div class="buttons">
+      <button class="btn" onclick="First()">Direct</button>
+      <button class="btn" onclick="Second()">Shifted</button>
+    </div>
+
+    <div class="buttons">
+      <a class="btn" href="../index.html">Домой</a>
+    </div>
+
+    <footer>© WEB-технологии</footer>
+  </div>
+
+<script>
+class Cat { Say(){ return "Meow"; } get name(){ return "Cat"; } }
+class Dog { Say(){ return "Woof"; } get name(){ return "Dog"; } }
+class Rooster { Say(){ return "Cock-a-doodle-doo"; } get name(){ return "Rooster"; } }
+
+const cat = new Cat();
+const dog = new Dog();
+const rooster = new Rooster();
+
+function First(){
+  const arr = [cat, dog, rooster];
+  demo.innerHTML = "";
+  arr.forEach((item, i) => {
+    demo.innerHTML += `${i}. ${item.name} says ${item.Say()}<br>`;
+  });
+}
+
+function Second(){
+  const arr = [cat, dog, rooster];
+  demo.innerHTML = "";
+  arr.forEach((item, i) => {
+    demo.innerHTML += `${item.name} says ${arr[(i+1)%arr.length].Say()}<br>`;
+  });
+}
+</script>
+
+</body>
+</html>
