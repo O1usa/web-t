@@ -135,19 +135,49 @@
   </div>
 
 <script>
-function loadRate(id, label){
-  fetch("https://api.allorigins.win/raw?url=" + encodeURIComponent("https://www.nbrb.by/api/exrates/rates/" + id))
-    .then(r => r.json())
-    .then(data => {
-      document.getElementById("price").innerHTML = label + " — " + data.Cur_OfficialRate + " BYN";
-      document.getElementById("status").innerHTML = data.Date + " • " + data.Cur_Name;
-      document.getElementById("json-view").innerText = JSON.stringify(data, null, 2);
-    })
-    .catch(() => {
-      document.getElementById("price").innerHTML = "Ошибка загрузки курса ⚠";
-      document.getElementById("status").innerHTML = "";
-      document.getElementById("json-view").innerText = "{ }";
-    });
+function setLoading(label){
+  document.getElementById("price").textContent = "Загрузка " + label + "...";
+  document.getElementById("status").textContent = "";
+  document.getElementById("json-view").textContent = "{ }";
+}
+
+// пробуем загрузить JSON: сначала напрямую, если не получилось — через allorigins
+async function fetchJsonWithFallback(url){
+  try{
+    const r1 = await fetch(url, { cache: "no-store" });
+    if(!r1.ok) throw new Error("Direct fetch failed: " + r1.status);
+    return await r1.json();
+  }catch(e){
+    const proxy = "https://api.allorigins.win/raw?url=" + encodeURIComponent(url);
+    const r2 = await fetch(proxy, { cache: "no-store" });
+    if(!r2.ok) throw new Error("Proxy fetch failed: " + r2.status);
+    return await r2.json();
+  }
+}
+
+async function loadRate(id, label){
+  setLoading(label);
+
+  // ВАЖНО: parammode=2 — текущий курс
+  const url = "https://www.nbrb.by/api/exrates/rates/" + id + "?parammode=2";
+
+  try{
+    const data = await fetchJsonWithFallback(url);
+
+    document.getElementById("price").textContent =
+      label + " — " + data.Cur_OfficialRate + " BYN";
+
+    document.getElementById("status").textContent =
+      data.Date + " • " + data.Cur_Name;
+
+    document.getElementById("json-view").textContent =
+      JSON.stringify(data, null, 2);
+
+  }catch(err){
+    document.getElementById("price").textContent = "Ошибка загрузки курса ⚠";
+    document.getElementById("status").textContent = "";
+    document.getElementById("json-view").textContent = "{ }";
+  }
 }
 
 function USD(){ loadRate(431, "USD"); }
@@ -156,3 +186,4 @@ function Euro(){ loadRate(451, "EUR"); }
 
 </body>
 </html>
+
