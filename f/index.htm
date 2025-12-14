@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project F</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background:#f3f4f6;
+      color:#111;
+      padding:20px;
+    }
+
+    .container{
+      max-width:700px;
+      margin:0 auto;
+      background:#fff;
+      border:1px solid #ddd;
+      border-radius:12px;
+      padding:24px;
+    }
+
+    h1{
+      margin:0 0 6px;
+      font-size:26px;
+    }
+
+    .subtitle{
+      margin:0 0 18px;
+      color:#555;
+      font-size:14px;
+    }
+
+    .block{
+      border:1px solid #ddd;
+      border-radius:10px;
+      padding:16px;
+      background:#fafafa;
+      margin-bottom:16px;
+    }
+
+    .buttons{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    button.btn, a.btn{
+      padding:10px 14px;
+      border-radius:10px;
+      border:1px solid #ccc;
+      background:#f9fafb;
+      cursor:pointer;
+      font-family: inherit;
+      font-size:14px;
+      color:#111;
+      text-decoration:none;
+    }
+
+    button.btn:hover,
+    a.btn:hover{
+      background:#e5e7eb;
+    }
+
+    #price{
+      font-size:18px;
+      font-weight:700;
+      margin:0 0 6px;
+      color:#111;
+    }
+
+    #status{
+      font-size:13px;
+      color:#666;
+      margin:0;
+    }
+
+    #json-block{
+      margin-top:12px;
+      background:#fff;
+      border:1px solid #ccc;
+      border-radius:10px;
+      padding:12px;
+      max-height:240px;
+      overflow:auto;
+      text-align:left;
+      font-size:13px;
+      white-space:pre-wrap;
+    }
+
+    #json-block code{
+      font-family: Consolas, monospace;
+    }
+
+    footer{
+      margin-top:16px;
+      font-size:12px;
+      color:#666;
+      text-align:center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Project F</h1>
+    <div class="subtitle">JSON (API НБ РБ)</div>
+
+    <div class="block">
+      <div class="buttons">
+        <button class="btn" onclick="USD()">USD ($)</button>
+        <button class="btn" onclick="Euro()">EUR (€)</button>
+      </div>
+
+      <div style="margin-top:12px;">
+        <div id="price">Нажмите кнопку, чтобы показать курс</div>
+        <div id="status"></div>
+      </div>
+
+      <div id="json-block">
+        <b>JSON object:</b>
+        <pre><code id="json-view">{ }</code></pre>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <a class="btn" href="../index.html">Домой</a>
+    </div>
+
+    <footer>© WEB-технологии</footer>
+  </div>
+
+<script>
+function loadRate(id, label){
+  fetch("https://api.allorigins.win/raw?url=" + encodeURIComponent("https://www.nbrb.by/api/exrates/rates/" + id))
+    .then(r => r.json())
+    .then(data => {
+      document.getElementById("price").innerHTML = label + " — " + data.Cur_OfficialRate + " BYN";
+      document.getElementById("status").innerHTML = data.Date + " • " + data.Cur_Name;
+      document.getElementById("json-view").innerText = JSON.stringify(data, null, 2);
+    })
+    .catch(() => {
+      document.getElementById("price").innerHTML = "Ошибка загрузки курса ⚠";
+      document.getElementById("status").innerHTML = "";
+      document.getElementById("json-view").innerText = "{ }";
+    });
+}
+
+function USD(){ loadRate(431, "USD"); }
+function Euro(){ loadRate(451, "EUR"); }
+</script>
+
+</body>
+</html>
