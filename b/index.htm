@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project B</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background:#f3f4f6;
+      color:#111;
+      padding:20px;
+    }
+
+    .container{
+      max-width:700px;
+      margin:0 auto;
+      background:#fff;
+      border:1px solid #ddd;
+      border-radius:12px;
+      padding:24px;
+    }
+
+    h1{
+      margin:0 0 6px;
+      font-size:26px;
+    }
+
+    .subtitle{
+      margin:0 0 18px;
+      color:#555;
+      font-size:14px;
+    }
+
+    .block{
+      border:1px solid #ddd;
+      border-radius:10px;
+      padding:16px;
+      background:#fafafa;
+      margin-bottom:16px;
+    }
+
+    #tasks{
+      list-style:none;
+      padding:0;
+      margin:0 0 12px;
+    }
+
+    #tasks li{
+      padding:8px 10px;
+      border:1px solid #ccc;
+      border-radius:8px;
+      margin-bottom:6px;
+      background:#fff;
+      font-size:14px;
+    }
+
+    .form-row{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    input[type="text"]{
+      flex:1;
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid #ccc;
+      font-size:14px;
+      font-family: inherit;
+    }
+
+    button.btn, a.btn{
+      padding:10px 14px;
+      border-radius:10px;
+      border:1px solid #ccc;
+      background:#f9fafb;
+      cursor:pointer;
+      font-family: inherit;
+      font-size:14px;
+      color:#111;
+      text-decoration:none;
+    }
+
+    button.btn:hover,
+    a.btn:hover{
+      background:#e5e7eb;
+    }
+
+    .buttons{
+      display:flex;
+      gap:10px;
+      margin-top:12px;
+      flex-wrap:wrap;
+    }
+
+    footer{
+      margin-top:16px;
+      font-size:12px;
+      color:#666;
+      text-align:center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Project B</h1>
+    <div class="subtitle">ToDo List</div>
+
+    <div class="block">
+      <form id="todo-form">
+        <ul id="tasks"></ul>
+
+        <div class="form-row">
+          <input id="task" type="text" placeholder="New task" autocomplete="off">
+          <button class="btn" type="submit">Add</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="buttons">
+      <a class="btn" href="../index.html">Домой</a>
+    </div>
+
+    <footer>© WEB-технологии</footer>
+  </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector("#todo-form").onsubmit = () => {
+    const task = document.querySelector("#task").value.trim();
+
+    if (task.length > 0) {
+      const li = document.createElement("li");
+      li.textContent = task;
+      document.querySelector("#tasks").append(li);
+    }
+
+    document.querySelector("#task").value = "";
+    return false;
+  };
+});
+</script>
+
+</body>
+</html>
