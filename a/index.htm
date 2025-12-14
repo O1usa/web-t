@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project A</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background:#f3f4f6;
+      color:#111;
+      padding:20px;
+    }
+
+    .container{
+      max-width:700px;
+      margin:0 auto;
+      background:#fff;
+      border:1px solid #ddd;
+      border-radius:12px;
+      padding:24px;
+      text-align:center;
+    }
+
+    h1{
+      margin:0 0 10px;
+      font-size:26px;
+    }
+
+    .subtitle{
+      margin-bottom:18px;
+      font-size:14px;
+      color:#555;
+    }
+
+    .block{
+      border:1px solid #ddd;
+      border-radius:10px;
+      padding:20px;
+      background:#fafafa;
+      margin-bottom:16px;
+    }
+
+    #hello{
+      font-size:28px;
+      font-weight:700;
+      margin-bottom:16px;
+      color:#111;
+    }
+
+    select{
+      padding:10px 14px;
+      border-radius:10px;
+      border:1px solid #ccc;
+      font-size:14px;
+      cursor:pointer;
+      background:#fff;
+    }
+
+    .buttons{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top:12px;
+    }
+
+    a.btn{
+      padding:10px 14px;
+      border-radius:10px;
+      border:1px solid #ccc;
+      background:#f9fafb;
+      color:#111;
+      text-decoration:none;
+      font-size:14px;
+    }
+
+    a.btn:hover{
+      background:#e5e7eb;
+    }
+
+    footer{
+      margin-top:16px;
+      font-size:12px;
+      color:#666;
+      text-align:center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Project A</h1>
+    <div class="subtitle">DropDown color</div>
+
+    <div class="block">
+      <div id="hello">Hello!</div>
+
+      <select id="color-change">
+        <option value="black">Select color</option>
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+      </select>
+    </div>
+
+    <div class="buttons">
+      <a class="btn" href="../index.html">Домой</a>
+    </div>
+
+    <footer>© WEB-технологии</footer>
+  </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector("#color-change").onchange = function () {
+    document.querySelector("#hello").style.color = this.value;
+  };
+});
+</script>
+
+</body>
+</html>
