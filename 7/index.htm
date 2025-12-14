@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project 7</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background:#f3f4f6;
+      color:#111;
+      padding:20px;
+    }
+
+    .container{
+      max-width:700px;
+      margin:0 auto;
+      background:#fff;
+      border:1px solid #ddd;
+      border-radius:12px;
+      padding:24px;
+    }
+
+    h1{
+      margin:0 0 6px;
+      font-size:26px;
+    }
+
+    .subtitle{
+      margin:0 0 18px;
+      color:#555;
+      font-size:14px;
+    }
+
+    .block{
+      border:1px solid #ddd;
+      border-radius:10px;
+      padding:16px;
+      background:#fafafa;
+      margin-bottom:16px;
+      text-align:center;
+    }
+
+    #dateDisplay{
+      margin:0;
+      font-size:22px;
+      font-weight:700;
+      color:#111;
+      min-height:28px;
+    }
+
+    .buttons{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+      justify-content:center;
+    }
+
+    button.btn, a.btn{
+      padding:10px 14px;
+      border-radius:10px;
+      border:1px solid #ccc;
+      background:#f9fafb;
+      cursor:pointer;
+      font-family: inherit;
+      font-size:14px;
+      color:#111;
+      text-decoration:none;
+    }
+
+    button.btn:hover,
+    a.btn:hover{
+      background:#e5e7eb;
+    }
+
+    footer{
+      margin-top:16px;
+      font-size:12px;
+      color:#666;
+      text-align:center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Project 7</h1>
+    <div class="subtitle">JS EVENT-DRIVEN PROGRAMMING</div>
+
+    <div class="block">
+      <h2 id="dateDisplay"></h2>
+
+      <div class="buttons">
+        <button class="btn" onclick="Go()">GO</button>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <a class="btn" href="../index.html">Домой</a>
+    </div>
+
+    <footer>© WEB-технологии</footer>
+  </div>
+
+<script>
+function Go(){
+  var date = new Date();
+  let y = date.getYear() + 1900;
+  let m = date.getMonth() + 1;
+  let d = date.getDate();
+  document.querySelector("#dateDisplay").innerHTML = y + "." + m + "." + d;
+  alert(date);
+}
+</script>
+
+</body>
+</html>
