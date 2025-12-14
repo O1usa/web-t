@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project C</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background:#f3f4f6;
+      color:#111;
+      padding:20px;
+    }
+
+    .container{
+      max-width:700px;
+      margin:0 auto;
+      background:#fff;
+      border:1px solid #ddd;
+      border-radius:12px;
+      padding:24px;
+    }
+
+    h1{
+      margin:0 0 6px;
+      font-size:26px;
+    }
+
+    .subtitle{
+      margin:0 0 18px;
+      color:#555;
+      font-size:14px;
+    }
+
+    .block{
+      border:1px solid #ddd;
+      border-radius:10px;
+      padding:16px;
+      background:#fafafa;
+      margin-bottom:16px;
+    }
+
+    .form-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-bottom:12px;
+    }
+
+    label{
+      font-size:14px;
+    }
+
+    input[type="number"]{
+      width:120px;
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid #ccc;
+      font-size:14px;
+      font-family: inherit;
+    }
+
+    .result{
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    .red-text{
+      color:red;
+      font-weight:700;
+    }
+
+    .buttons{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    button.btn, a.btn{
+      padding:10px 14px;
+      border-radius:10px;
+      border:1px solid #ccc;
+      background:#f9fafb;
+      cursor:pointer;
+      font-family: inherit;
+      font-size:14px;
+      color:#111;
+      text-decoration:none;
+    }
+
+    button.btn:hover,
+    a.btn:hover{
+      background:#e5e7eb;
+    }
+
+    footer{
+      margin-top:16px;
+      font-size:12px;
+      color:#666;
+      text-align:center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Project C</h1>
+    <div class="subtitle">Balmer peak</div>
+
+    <div class="block">
+      <div class="form-row">
+        <label for="txtWeight">Weight:</label>
+        <input type="number" id="txtWeight" value="130" min="1">
+        <button class="btn" onclick="WidmarkGo()">Calc</button>
+      </div>
+
+      <div id="Widmark" class="result"></div>
+    </div>
+
+    <div class="buttons">
+      <a class="btn" href="../index.html">Домой</a>
+    </div>
+
+    <footer>© WEB-технологии</footer>
+  </div>
+
+<script>
+function WidmarkGo(){
+  var N = document.getElementById("txtWeight").value;
+  var W = Widmark(N);
+  document.getElementById("Widmark").innerHTML = W;
+}
+
+function Widmark(N){
+  var m = N;
+  var A = 1.35 * m * 0.7;
+  var F =
+    "Cognac - <span class='red-text'>" + Math.round(A / 0.4)  + " gr.</span><br>" +
+    "Port wine - <span class='red-text'>" + Math.round(A / 0.19) + " gr.</span><br>" +
+    "Dry wine - <span class='red-text'>" + Math.round(A / 0.12) + " gr.</span><br>" +
+    "Beer - <span class='red-text'>" + Math.round(A / 0.06) + " gr.</span><br>";
+  return F;
+}
+</script>
+
+</body>
+</html>
